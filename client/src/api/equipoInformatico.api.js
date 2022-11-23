@@ -1,15 +1,15 @@
 import axios from 'axios';
 export const getEquiposInformaticosRequest = async () =>
-  await axios.get('http://localhost:4000/equipoInformaticos');
+  await axios.get('https://sistema-control-equipos-production.up.railway.app/equipoInformaticos');
 export const createEquipoRequest = async (equipo) =>
-  await axios.post('http://localhost:4000/equipoInformaticos', equipo);
+  await axios.post('https://sistema-control-equipos-production.up.railway.app/equipoInformaticos', equipo);
 export const deleteEquipoRequest = async (id) =>
-  await axios.delete(`http://localhost:4000/equipoInformaticos/${id}`);
+  await axios.delete(`https://sistema-control-equipos-production.up.railway.app/equipoInformaticos/${id}`);
 export const toggleEquipoRequest = async (id, estado) =>
-  await axios.put(`http://localhost:4000/equipoInformaticos/${id}`, {
+  await axios.put(`https://sistema-control-equipos-production.up.railway.app/equipoInformaticos/${id}`, {
     estado,
   });
 export const toggleEquipoDisponibilidadRequest = async (id, disponibilidad) =>
-  await axios.put(`http://localhost:4000/equipoInformaticos/${id}`, {
+  await axios.put(`https://sistema-control-equipos-production.up.railway.app/equipoInformaticos/${id}`, {
     disponibilidad,
   });

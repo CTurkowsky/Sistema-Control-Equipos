@@ -1,6 +1,6 @@
 import axios from 'axios';
 export const getIncidenciasRequest= async () =>
-  await axios.get('http://localhost:4000/incidencia');
+  await axios.get('https://sistema-control-equipos-production.up.railway.app/incidencia');
 export const createIncidenciaRequest = async (incidencia) =>
-  await axios.post('http://localhost:4000/incidencia', incidencia);
+  await axios.post('https://sistema-control-equipos-production.up.railway.app/incidencia', incidencia);
 
