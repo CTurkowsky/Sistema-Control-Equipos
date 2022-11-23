@@ -1,9 +1,13 @@
 import {useEquipos} from '../../hooks';
 import {Typography, Box, CardContent, Button, Grid} from '@mui/material';
 export const ListEquipos = () => {
-  const {equipos, toggleEstado, deleteEquipo} = useEquipos();
+  const {equipos, toggleEstado, toggleDisponibilidad, deleteEquipo} = useEquipos();
   const handleDone = async (id) => {
     await toggleEstado(id);
+  };
+
+  const handleDisponibilidad = async (id) => {
+    await toggleDisponibilidad(id);
   };
 
   return (
@@ -68,9 +72,16 @@ export const ListEquipos = () => {
               <Button
                 onClick={() => handleDone(equipo.idEquipo)}
                 variant='contained'
-                sx={{m: 4}}
+                sx={{m: 2}}
               >
                 Cambiar Estado
+              </Button>
+              <Button
+                onClick={() => handleDisponibilidad(equipo.idEquipo)}
+                variant='contained'
+                sx={{m: 2}}
+              >
+                Cambiar Disponibilidad
               </Button>
               <Button variant='contained' onClick={() => deleteEquipo(equipo.idEquipo)}>Eliminar</Button>
             </Grid>

@@ -9,3 +9,7 @@ export const toggleEquipoRequest = async (id, estado) =>
   await axios.put(`http://localhost:4000/equipoInformaticos/${id}`, {
     estado,
   });
+export const toggleEquipoDisponibilidadRequest = async (id, disponibilidad) =>
+  await axios.put(`http://localhost:4000/equipoInformaticos/${id}`, {
+    disponibilidad,
+  });

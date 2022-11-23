@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import {
   getEquiposInformaticosRequest,
   toggleEquipoRequest,
+  toggleEquipoDisponibilidadRequest,
   deleteEquipoRequest,
 } from '../api/equipoInformatico.api';
 
@@ -30,13 +31,35 @@ export const useEquipos = () => {
       );
       await toggleEquipoRequest(
         id,
-        equipoFound.estado === 'Necesita Reparacion' ?  'Operativo' : 'Necesita Reparacion'
+        equipoFound.estado === 'Necesita Reparacion' ? 'Operativo' : 'Necesita Reparacion'
       );
       setEquipos(
         equipos.map((equipo) =>
           equipo.idEquipo === id
-            ? { ...equipo, estado: !equipo.estado }
-            :equipo 
+            ? {...equipo, estado: !equipo.estado}
+            : equipo
+        )
+      );
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  const toggleDisponibilidad = async (id) => {
+    try {
+      const equipoFound = equipos.find(
+        (equipo) => equipo.idEquipo === id
+      );
+      await toggleEquipoDisponibilidadRequest(
+        id,
+        equipoFound.disponibilidad === 'No' ? 'Si' : 'No'
+      );
+      setEquipos(
+        equipos.map((equipo) =>
+          equipo.idEquipo === id
+            ? {...equipo, disponibilidad: !equipo.disponibilidad}
+            : equipo
         )
       );
     } catch (error) {
@@ -46,6 +69,7 @@ export const useEquipos = () => {
   return {
     equipos,
     toggleEstado,
+    toggleDisponibilidad,
     deleteEquipo,
   };
 };

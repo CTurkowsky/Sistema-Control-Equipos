@@ -3,7 +3,7 @@ import { pool } from '../db.js';
 
 export const getIncidencias = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT i.idIncidencia, i.fecha, i.hora, i.descripcion, u.nombre as nombreUsuario, e.nombre as nombreEquipo from incidencia i INNER JOIN usuario u on i.usuario = u.idUsuario INNER JOIN equipoinformatico e on i.equipo = e.idEquipo');
+    const [result] = await pool.query('SELECT i.idIncidencia, date_format(i.fecha , "%d-%m-%Y") AS fecha, i.hora, i.descripcion, u.nombre as nombreUsuario, e.nombre as nombreEquipo from incidencia i INNER JOIN usuario u on i.usuario = u.idUsuario INNER JOIN equipoinformatico e on i.equipo = e.idEquipo');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
