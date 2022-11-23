@@ -5,7 +5,7 @@ export const createMarca = async (req, res) => {
   try {
     const { marca } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO MARCA(marca) VALUES (?)',
+      'INSERT INTO marca (marca) VALUES (?)',
       [marca]
     );
 
@@ -30,7 +30,7 @@ export const getMarcas = async (req, res) => {
 export const deleteMarca = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM MARCA WHERE idMarca = ?',
+      'DELETE FROM marca WHERE idMarca = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

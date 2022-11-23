@@ -13,7 +13,7 @@ export const getPrestamos = async (req, res) => {
 export const getPrestamo = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM PRESTAMO WHERE idPrestamo = ?',
+      'SELECT * FROM prestamo WHERE idPrestamo = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -31,7 +31,7 @@ export const createPrestamo = async (req, res) => {
     const { fecha, horaPrestamo, horaDevolucion, estado, docente, usuario } =
       req.body;
     const [result] = await pool.query(
-      'INSERT INTO PRESTAMO(fecha,horaPrestamo, horaDevolucion, estado, docente, usuario ) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO prestamo (fecha,horaPrestamo, horaDevolucion, estado, docente, usuario ) VALUES (?,?,?,?,?,?)',
       [fecha, horaPrestamo, horaDevolucion, estado, docente, usuario]
     );
 
@@ -52,7 +52,7 @@ export const createPrestamo = async (req, res) => {
 export const updatePrestamo = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE PRESTAMO SET ? WHERE idPrestamo = ?',
+      'UPDATE prestamo SET ? WHERE idPrestamo = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -64,7 +64,7 @@ export const updatePrestamo = async (req, res) => {
 export const deletePrestamo = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM PRESTAMO WHERE idPrestamo = ?',
+      'DELETE FROM prestamo WHERE idPrestamo = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

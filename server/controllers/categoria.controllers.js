@@ -5,7 +5,7 @@ export const createCategoria= async (req, res) => {
   try {
     const { categoria  } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO CATEGORIA(categoria) VALUES (?)',
+      'INSERT INTO categoria (categoria) VALUES (?)',
       [categoria]
     );
 
@@ -19,7 +19,7 @@ export const createCategoria= async (req, res) => {
 };
 export const getCategorias= async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT * FROM CATEGORIA');
+    const [result] = await pool.query('SELECT * FROM categoria');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -29,7 +29,7 @@ export const getCategorias= async (req, res) => {
 export const deleteCategoria = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM CATEGORIA WHERE idCategoria = ?',
+      'DELETE FROM categoria WHERE idCategoria = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

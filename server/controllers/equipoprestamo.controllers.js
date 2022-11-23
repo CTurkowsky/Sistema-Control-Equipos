@@ -5,7 +5,7 @@ import { pool } from '../db.js';
 
 export const getEquipoPrestamos = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT ep.idEquipoPrestamo, e.nombre, p.idPrestamo,ep.estado from EQUIPOPRESTAMO ep INNER JOIN EquipoInformatico e ON ep.equipo = e.idEquipo INNER JOIN Prestamo p on ep.prestamo = p.idPrestamo');
+    const [result] = await pool.query('SELECT ep.idEquipoPrestamo, e.nombre, p.idPrestamo,ep.estado from equipoprestamo ep INNER JOIN EquipoInformatico e ON ep.equipo = e.idEquipo INNER JOIN Prestamo p on ep.prestamo = p.idPrestamo');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -17,7 +17,7 @@ export const getEquipoPrestamos = async (req, res) => {
 export const getEquipoPrestamo = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM EQUIPOPRESTAMO WHERE idEquipoPrestamo = ?',
+      'SELECT * FROM equipoprestamo WHERE idEquipoPrestamo = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -36,7 +36,7 @@ export const createEquipoPrestamo = async (req, res) => {
     const { equipo, prestamo } =
       req.body;
     const [result] = await pool.query(
-      'INSERT INTO EQUIPOPRESTAMO(equipo,prestamo ) VALUES (?,?)',
+      'INSERT INTO equipoprestamo (equipo,prestamo ) VALUES (?,?)',
       [equipo, prestamo]
     );
 
@@ -55,7 +55,7 @@ export const createEquipoPrestamo = async (req, res) => {
 export const updateEquipoPrestamo = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE EQUIPOPRESTAMO SET ? WHERE idEquipoPrestamo = ?',
+      'UPDATE equipoprestamo SET ? WHERE idEquipoPrestamo = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -68,7 +68,7 @@ export const updateEquipoPrestamo = async (req, res) => {
 export const deleteEquipoPrestamo = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM EQUIPOPRESTAMO WHERE idEquipoPrestamo = ?',
+      'DELETE FROM equipoprestamo WHERE idEquipoPrestamo = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

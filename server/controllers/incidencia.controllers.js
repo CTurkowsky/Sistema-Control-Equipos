@@ -13,7 +13,7 @@ export const getIncidencias = async (req, res) => {
 export const getIncidencia = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM INCIDENCIA WHERE idIncidencia = ?',
+      'SELECT * FROM incidencia WHERE idIncidencia = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -29,7 +29,7 @@ export const createIncidencia = async (req, res) => {
   try {
     const { fecha, hora, descripcion, usuario, equipo } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO INCIDENCIA(fecha, hora, descripcion, usuario, equipo ) VALUES (?,?,?,?,?)',
+      'INSERT INTO incidencia (fecha, hora, descripcion, usuario, equipo ) VALUES (?,?,?,?,?)',
       [fecha, hora, descripcion, usuario, equipo]
     );
 
@@ -49,7 +49,7 @@ export const createIncidencia = async (req, res) => {
 export const updateIncidencia = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE INCIDENCIA SET ? WHERE idIncidencia = ?',
+      'UPDATE incidencia SET ? WHERE idIncidencia = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -61,7 +61,7 @@ export const updateIncidencia = async (req, res) => {
 export const deleteIncidencia= async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM INCIDENCIA WHERE idIncidencia = ?',
+      'DELETE FROM incidencia WHERE idIncidencia = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

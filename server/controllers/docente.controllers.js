@@ -5,7 +5,7 @@ import { pool } from '../db.js';
 
 export const getDocentes = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT * FROM DOCENTE');
+    const [result] = await pool.query('SELECT * FROM docente ');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -17,7 +17,7 @@ export const getDocentes = async (req, res) => {
 export const getDocente= async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM DOCENTE WHERE idDocente = ?',
+      'SELECT * FROM docente WHERE idDocente = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -37,7 +37,7 @@ export const createDocente = async (req, res) => {
   try {
     const { nombre, apellidoPaterno, apellidoMaterno, numeroCelular, grado, seccion } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO DOCENTE(nombre, apellidoPaterno, apellidoMaterno, numeroCelular, grado, seccion) VALUES (?,?,?,?,?,?)',
+      'INSERT INTO docente (nombre, apellidoPaterno, apellidoMaterno, numeroCelular, grado, seccion) VALUES (?,?,?,?,?,?)',
       [nombre, apellidoPaterno, apellidoMaterno, numeroCelular, grado, seccion]
     );
 
@@ -60,7 +60,7 @@ export const createDocente = async (req, res) => {
 export const updateDocente= async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE DOCENTE SET ? WHERE idDocente = ?',
+      'UPDATE docente SET ? WHERE idDocente = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -73,7 +73,7 @@ export const updateDocente= async (req, res) => {
 export const deleteDocente = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM DOCENTE WHERE idDocente = ?',
+      'DELETE FROM docente WHERE idDocente = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)

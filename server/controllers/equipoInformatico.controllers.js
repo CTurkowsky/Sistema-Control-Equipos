@@ -17,7 +17,7 @@ export const getEquipoInformaticos = async (req, res) => {
 export const getEquipoInformatico = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'SELECT * FROM EQUIPOINFORMATICO WHERE idEquipo = ?',
+      'SELECT * FROM equipoinformatico WHERE idEquipo = ?',
       [req.params.id]
     );
     if (result.length == 0)
@@ -37,7 +37,7 @@ export const createEquipoInformatico = async (req, res) => {
   try {
     const { nombre, descripcion,numeroSerie, estado, categoria, marca, disponibilidad } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO EQUIPOINFORMATICO(nombre,descripcion,numeroSerie,estado,categoria, marca, disponibilidad) VALUES (?,?,?,?,?,?,?)',
+      'INSERT INTO equipoinformatico (nombre,descripcion,numeroSerie,estado,categoria, marca, disponibilidad) VALUES (?,?,?,?,?,?,?)',
       [nombre,descripcion, numeroSerie,estado, categoria, marca, disponibilidad]
     );
 
@@ -61,7 +61,7 @@ export const createEquipoInformatico = async (req, res) => {
 export const updateEquipoInformatico = async (req, res) => {
   try {
     const result = await pool.query(
-      'UPDATE EQUIPOINFORMATICO SET ? WHERE idEquipo = ?',
+      'UPDATE equipoinformatico SET ? WHERE idEquipo = ?',
       [req.body, req.params.id]
     );
     res.json(result);
@@ -74,7 +74,7 @@ export const updateEquipoInformatico = async (req, res) => {
 export const deleteEquipoInformatico = async (req, res) => {
   try {
     const [result] = await pool.query(
-      'DELETE FROM EQUIPOINFORMATICO WHERE idEquipo = ?',
+      'DELETE FROM equipoinformatico WHERE idEquipo = ?',
       [req.params.id]
     );
     if (result.affectedRows === 0)
