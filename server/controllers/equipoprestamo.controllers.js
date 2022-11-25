@@ -5,7 +5,7 @@ import { pool } from '../db.js';
 
 export const getEquipoPrestamos = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT ep.idEquipoPrestamo, e.nombre, p.idPrestamo,ep.estado from equipoprestamo ep INNER JOIN EquipoInformatico e ON ep.equipo = e.idEquipo INNER JOIN Prestamo p on ep.prestamo = p.idPrestamo');
+    const [result] = await pool.query('SELECT ep.idEquipoPrestamo, e.nombre, p.idPrestamo,ep.estado from equipoprestamo ep INNER JOIN equipoinformatico e ON ep.equipo = e.idEquipo INNER JOIN prestamo p on ep.prestamo = p.idPrestamo');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
