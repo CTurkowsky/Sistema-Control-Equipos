@@ -29,6 +29,7 @@ export const EquipoPrestamo = () => {
   useEffect(() => {
     setDocente(docentes.length > 0 ? docentes.at(-1).nombre : '');
   }, [docentes]);
+
   const filtrarEquipo = (idEquipo) => {
     const filtered = equipos.find((e) => e.idEquipo == idEquipo);
     if (equipoFiltered.find((equipo) => equipo.idEquipo == idEquipo))
@@ -56,16 +57,15 @@ export const EquipoPrestamo = () => {
       if (equipo.length === 0) {
         return Swal.fire({
           title: 'Error!',
-          text: 'Agrega un equipo',
+          text: 'Agrega un producto',
           icon: 'error',
           confirmButtonText: 'Aceptar',
         });
       }
       const registerequipo = await Promise.all(
-        equipo.map(async (equip) => {
-          await createEquipoPrestamoRequest(equip);
-          setEquipo([]);
-          setEquipoFiltered([]);
+        equipo.map(async (e) => {
+          await createEquipoPrestamoRequest(e);
+          registerEquipo();
           return Swal.fire({
             title: 'Success!',
             text: 'Se ha registrado un detalle',
@@ -84,10 +84,12 @@ export const EquipoPrestamo = () => {
     }
   };
 
+
   const formik = useFormik({
     initialValues: {
       equipo: '',
       prestamo: idPrestamo,
+      estado: 'Pendiente'
     },
     enableReinitialize: true,
     validationSchema: YUP.object({
@@ -101,7 +103,12 @@ export const EquipoPrestamo = () => {
         filtrarEquipo(values.equipo);
         formik.resetForm();
       } catch (error) {
-        console.log(error);
+        Swal.fire({
+          title: 'Error!',
+          text: { error },
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
       }
     },
   });

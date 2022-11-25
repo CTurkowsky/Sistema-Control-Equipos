@@ -33,17 +33,18 @@ export const getEquipoPrestamo = async (req, res) => {
 
 export const createEquipoPrestamo = async (req, res) => {
   try {
-    const { equipo, prestamo } =
+    const { equipo, prestamo, estado } =
       req.body;
     const [result] = await pool.query(
-      'INSERT INTO equipoprestamo (equipo,prestamo ) VALUES (?,?)',
-      [equipo, prestamo]
+      'INSERT INTO equipoprestamo (equipo,prestamo,estado ) VALUES (?,?,?)',
+      [equipo, prestamo, estado]
     );
 
     res.json({
       idEquipoPrestamo: result.insertId,
       equipo,
       prestamo,
+      estado
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });

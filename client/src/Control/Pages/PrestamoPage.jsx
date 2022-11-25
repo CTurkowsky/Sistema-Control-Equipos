@@ -1,7 +1,6 @@
 import {
   Button,
   Grid,
-  TextField,
   Alert,
   Select,
   MenuItem,
@@ -11,6 +10,7 @@ import { FormLayout } from '../Layout/FormLayout';
 import { useDocentes, useEquipos, useUsuarios } from '../../hooks';
 import { useFormik } from 'formik';
 import * as YUP from 'yup';
+import Swal from 'sweetalert2';
 import { createPrestamoRequest } from '../../api/prestamo.api';
 export const PrestamoPage = () => {
   const { docentes } = useDocentes();
@@ -35,9 +35,20 @@ export const PrestamoPage = () => {
       console.log(values);
       try {
         const response = await createPrestamoRequest(values);
+        return Swal.fire({
+          title: 'Success!',
+          text: 'Se ha registrado un detalle',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
         formik.resetForm();
       } catch (error) {
-        console.log(error);
+        return Swal.fire({
+          title: 'Error!',
+          text: { error },
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
       }
     },
   });
@@ -47,8 +58,24 @@ export const PrestamoPage = () => {
       <FormLayout title='Prestamo'>
         <form onSubmit={formik.handleSubmit}>
           <Grid container>
-           
 
+            <Grid item xs={12} sx={{ mt: 2 }}>
+            <InputLabel>Fecha</InputLabel>
+            <input
+              label='Fecha'
+              type='date'
+              placeholder='Fecha Prestamo'
+              name='fecha'
+              value={formik.values.fecha}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.touched.fecha && formik.errors.fecha ? (
+              <Alert sx={{ mt: 2 }} severity='error'>
+                {formik.errors.fecha}
+              </Alert>
+            ) : null}
+            </Grid>
             <Grid item xs={12} sx={{ mt: 2 }}>
               <InputLabel>Hora Prestamo</InputLabel>
               <input
