@@ -2,7 +2,7 @@ import { useEquipoPrestamos } from '../../hooks';
 import { Typography, Box, CardContent, Button, Grid } from '@mui/material';
 import { ListLayout } from '../Layout/ListLayout';
 export const ListEquipoPrestamo = () => {
-  const { equipoprestamos, toggleCompleted } = useEquipoPrestamos();
+  const { equipoprestamos, toggleCompleted, deleteEquipoPrestamo } = useEquipoPrestamos();
 
   const handleDone = async (id) => {
     await toggleCompleted(id);
@@ -51,7 +51,7 @@ export const ListEquipoPrestamo = () => {
               >
                 Completar
               </Button>
-              <Button variant='contained'>Eliminar</Button>
+              <Button  onClick={ deleteEquipoPrestamo(equipoprestamo.idEquipoPrestamo)}variant='contained'>Eliminar</Button>
             </Grid>
           </CardContent>
         </Box>

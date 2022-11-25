@@ -42,7 +42,8 @@ export const EquipoPrestamo = () => {
     setEquipoFiltered([...equipoFiltered, filtered]);
   };
   const addEquipo = (newEquipo) => {
-    if (equipo.find((e) => e.equipo === newEquipo.equipo)) return;
+    if (equipo.find((e) => e.equipo === newEquipo.equipo)) 
+    return;
     setEquipo([newEquipo, ...equipo]);
     console.log(equipo);
   };
@@ -65,7 +66,7 @@ export const EquipoPrestamo = () => {
       const registerequipo = await Promise.all(
         equipo.map(async (e) => {
           await createEquipoPrestamoRequest(e);
-          registerEquipo();
+          resetEquipo();
           return Swal.fire({
             title: 'Success!',
             text: 'Se ha registrado un detalle',
@@ -84,12 +85,11 @@ export const EquipoPrestamo = () => {
     }
   };
 
-
   const formik = useFormik({
     initialValues: {
       equipo: '',
       prestamo: idPrestamo,
-      estado: 'Pendiente'
+      estado: 'Pendiente',
     },
     enableReinitialize: true,
     validationSchema: YUP.object({

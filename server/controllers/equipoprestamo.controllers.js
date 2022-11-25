@@ -21,7 +21,7 @@ export const getEquipoPrestamo = async (req, res) => {
       [req.params.id]
     );
     if (result.length == 0)
-      return res.status(404).json({ messagge: 'Prestamo no encontrado' });
+      return res.status(404).json({ messagge: 'EquipoPrestamo no encontrado' });
 
     res.json(result[0]);
   } catch (error) {
@@ -73,7 +73,7 @@ export const deleteEquipoPrestamo = async (req, res) => {
       [req.params.id]
     );
     if (result.affectedRows === 0)
-      return res.status(404).json({ message: 'Prestamo no encontrado' });
+      return res.status(404).json({ message: 'Equipo Prestamo no encontrado para ser eliminado' });
     return res.sendStatus(204);
   } catch (error) {
     return res.status(500).json({ message: error.message });

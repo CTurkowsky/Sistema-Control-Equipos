@@ -58,23 +58,22 @@ export const PrestamoPage = () => {
       <FormLayout title='Prestamo'>
         <form onSubmit={formik.handleSubmit}>
           <Grid container>
-
             <Grid item xs={12} sx={{ mt: 2 }}>
-            <InputLabel>Fecha</InputLabel>
-            <input
-              label='Fecha'
-              type='date'
-              placeholder='Fecha Prestamo'
-              name='fecha'
-              value={formik.values.fecha}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-            />
-            {formik.touched.fecha && formik.errors.fecha ? (
-              <Alert sx={{ mt: 2 }} severity='error'>
-                {formik.errors.fecha}
-              </Alert>
-            ) : null}
+              <InputLabel>Fecha</InputLabel>
+              <input
+                label='Fecha'
+                type='date'
+                placeholder='Fecha Prestamo'
+                name='fecha'
+                value={formik.values.fecha}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+              {formik.touched.fecha && formik.errors.fecha ? (
+                <Alert sx={{ mt: 2 }} severity='error'>
+                  {formik.errors.fecha}
+                </Alert>
+              ) : null}
             </Grid>
             <Grid item xs={12} sx={{ mt: 2 }}>
               <InputLabel>Hora Prestamo</InputLabel>

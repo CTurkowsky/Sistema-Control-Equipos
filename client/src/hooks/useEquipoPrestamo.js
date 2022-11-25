@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getEquipoPrestamosRequest, toggleEquipoPrestamoDoneRequest } from '../api/equipoprestamo.api';
+import { getEquipoPrestamosRequest, deleteEquipoPrestamoRequest, toggleEquipoPrestamoDoneRequest } from '../api/equipoprestamo.api';
 
 export const useEquipoPrestamos = () => {
   const [equipoprestamos, setEquipoPrestamos] = useState([]);
@@ -10,7 +10,14 @@ export const useEquipoPrestamos = () => {
     };
     getEquipoPrestamos();
   }, [equipoprestamos]);
-
+  const deleteEquipoPrestamo = async (id) => {
+    try {
+      const response = await deleteEquipoPrestamoRequest(id);
+      setEquipoPrestamos(equipoprestamos.filter((equipo) => equipo.idEquipoPrestamo !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
     const toggleCompleted = async (id) => {
     try {
       const equipoprestamoFound = equipoprestamos.find((equipoprestamo) => equipoprestamo.idEquipoPrestamo === id);
@@ -25,6 +32,6 @@ export const useEquipoPrestamos = () => {
     }
   };
   return {
-    equipoprestamos,toggleCompleted
+    equipoprestamos,toggleCompleted, deleteEquipoPrestamo
   };
 };
