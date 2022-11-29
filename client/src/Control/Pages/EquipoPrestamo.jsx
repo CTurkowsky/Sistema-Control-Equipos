@@ -76,12 +76,14 @@ export const EquipoPrestamo = () => {
         })
       );
     } catch (error) {
-      return Swal.fire({
-        title: 'Error!',
-        text: { error },
-        icon: 'error',
-        confirmButtonText: 'Aceptar',
-      });
+      
+      alert(JSON.stringify(error))
+      // return Swal.fire({
+      //   title: 'Error!',
+      //   text: { error },
+      //   icon: 'error',
+      //   confirmButtonText: 'Aceptar',
+      // });
     }
   };
 
@@ -89,7 +91,7 @@ export const EquipoPrestamo = () => {
     initialValues: {
       equipo: '',
       prestamo: idPrestamo,
-      estado: 'Pendiente',
+      estado: 'Pendiente'
     },
     enableReinitialize: true,
     validationSchema: YUP.object({
@@ -152,7 +154,7 @@ export const EquipoPrestamo = () => {
                   fullWidth
                   type='submit'
                   sx={{ color: '#ffff' }}
-                  onClick={addEquipo}
+                  // onClick={addEquipo}
                 >
                   Agregar
                 </Button>

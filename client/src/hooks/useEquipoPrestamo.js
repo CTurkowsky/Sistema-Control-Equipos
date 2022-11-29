@@ -10,10 +10,11 @@ export const useEquipoPrestamos = () => {
     };
     getEquipoPrestamos();
   }, [equipoprestamos]);
+
   const deleteEquipoPrestamo = async (id) => {
     try {
       const response = await deleteEquipoPrestamoRequest(id);
-      setEquipoPrestamos(equipoprestamos.filter((equipo) => equipo.idEquipoPrestamo !== id));
+      setEquipoPrestamos(equipoprestamos.filter((ep) => ep.idEquipoPrestamo !== id));
     } catch (error) {
       console.error(error);
     }

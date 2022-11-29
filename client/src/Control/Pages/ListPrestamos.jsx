@@ -1,17 +1,66 @@
 import { usePrestamos } from '../../hooks';
-import { Typography, Box, CardContent, Button, Grid } from '@mui/material';
+import {
+  Typography,
+  Box,
+  Button,
+  Grid,
+  TextField,
+} from '@mui/material';
 import { ListLayout } from '../Layout/ListLayout';
+import { useState } from 'react';
 export const ListPrestamos = () => {
   const { prestamos, deletePrestamo, toggleCompleted } = usePrestamos();
 
   const handleDone = async (id) => {
     await toggleCompleted(id);
   };
+
+  const [currentPage, setCurrentPage] = useState(0);
+  const [search, setSearch] = useState('');
+
+  const filteredPrestamos = () => {
+    if (search.length === 0)
+      return prestamos.slice(currentPage, currentPage + 10);
+
+    const filtered = prestamos.filter((prestamo) =>
+      prestamo.fecha.includes(search)
+    );
+    return filtered.slice(currentPage, currentPage + 10);
+  };
+
+  const nextPage = () => {
+    if (
+      prestamos.filter((prestamo) => prestamo.fecha.includes(search)).length >
+      currentPage + 10
+    )
+      setCurrentPage(currentPage + 10);
+  };
+  const prevPage = () => {
+    if (currentPage > 0) setCurrentPage(currentPage - 10);
+  };
+
+  const onSearchChange = ({ target }) => {
+    setCurrentPage(0);
+    setSearch(target.value);
+  };
   return (
     <ListLayout>
-      {prestamos.map((prestamo) => (
-        <Box key={prestamo.idPrestamo} sx={{ margin: 4 }}>
-          <CardContent>
+      <Grid
+        sx={{
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}
+      >
+        <TextField
+          type='text'
+          className=' my-5 form-control align-self-center '
+          placeholder='Burcar Fecha dd-mm-yyyy'
+          value={search}
+          onChange={onSearchChange}
+        />
+
+        {filteredPrestamos().map((prestamo) => (
+          <Box key={prestamo.idPrestamo} sx={{ margin: 4 }}>
             <Grid
               alignItems='center'
               sx={{
@@ -63,11 +112,34 @@ export const ListPrestamos = () => {
               >
                 Completar
               </Button>
-              <Button variant='contained' onClick={() => deletePrestamo(prestamo.idPrestamo)}>Eliminar</Button>
+              <Button
+                variant='contained'
+                onClick={() => deletePrestamo(prestamo.idPrestamo)}
+              >
+                Eliminar
+              </Button>
             </Grid>
-          </CardContent>
-        </Box>
-      ))}
+          </Box>
+        ))}
+
+        <nav>
+          <ul className='pagination'>
+            <li className='page-item'>
+              <a className='page-link' onClick={prevPage}>
+                Anterior
+              </a>
+            </li>
+            <li className='page-item active'>
+              <a className='page-link'>{currentPage + 1}</a>
+            </li>
+            <li className='page-item'>
+              <a className='page-link' onClick={nextPage}>
+                Siguiente
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </Grid>
     </ListLayout>
   );
 };

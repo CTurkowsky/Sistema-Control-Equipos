@@ -51,7 +51,7 @@ export const ListEquipoPrestamo = () => {
               >
                 Completar
               </Button>
-              <Button  onClick={ deleteEquipoPrestamo(equipoprestamo.idEquipoPrestamo)}variant='contained'>Eliminar</Button>
+              <Button  onClick={() => deleteEquipoPrestamo(equipoprestamo.idEquipoPrestamo)}variant='contained'>Eliminar</Button>
             </Grid>
           </CardContent>
         </Box>
