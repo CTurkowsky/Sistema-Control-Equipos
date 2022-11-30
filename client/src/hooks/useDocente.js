@@ -9,7 +9,7 @@ export const useDocentes = () => {
       setDocentes(response.data);
     };
     getDocentes();
-  }, []);
+  }, [docentes]);
 
   return {
     docentes,

@@ -43,7 +43,12 @@ export const CategoriaPage = () => {
         });
         formik.resetForm();
       } catch (error) {
-        console.log(error);
+ return Swal.fire({
+          title: 'Error!',
+          text: { error },
+          icon: 'error',
+          confirmButtonText: 'Aceptar',
+        });
       }
     },
   });

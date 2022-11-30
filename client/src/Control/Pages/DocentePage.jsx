@@ -65,6 +65,12 @@ export const DocentePage = () => {
           });
         const response = await createDocenteRequest(values);
         formik.resetForm();
+        return Swal.fire({
+          title: 'Success!',
+          text: 'Se ha registrado un docente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar',
+        });
       } catch (error) {
         console.log(error);
       }

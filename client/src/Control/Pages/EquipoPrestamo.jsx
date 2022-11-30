@@ -24,11 +24,12 @@ export const EquipoPrestamo = () => {
 
   useEffect(() => {
     setIdPrestamo(prestamos.length > 0 ? prestamos.at(-1).idPrestamo : '');
+    setDocente(prestamos.length > 0 ? prestamos.at(-1).nombreDocente : '');
   }, [prestamos]);
 
-  useEffect(() => {
-    setDocente(docentes.length > 0 ? docentes.at(-1).nombre : '');
-  }, [docentes]);
+  // useEffect(() => {
+  //   setDocente(docentes.length > 0 ? docentes.at(-1).nombre : '');
+  // }, [docentes]);
 
   const filtrarEquipo = (idEquipo) => {
     const filtered = equipos.find((e) => e.idEquipo == idEquipo);
@@ -67,6 +68,7 @@ export const EquipoPrestamo = () => {
         equipo.map(async (e) => {
           await createEquipoPrestamoRequest(e);
           resetEquipo();
+          formik.resetForm();
           return Swal.fire({
             title: 'Success!',
             text: 'Se ha registrado un detalle',

@@ -1,11 +1,5 @@
 import { usePrestamos } from '../../hooks';
-import {
-  Typography,
-  Box,
-  Button,
-  Grid,
-  TextField,
-} from '@mui/material';
+import { Typography, Box, Button, Grid, TextField } from '@mui/material';
 import { ListLayout } from '../Layout/ListLayout';
 import { useState } from 'react';
 export const ListPrestamos = () => {
@@ -41,6 +35,7 @@ export const ListPrestamos = () => {
 
   const onSearchChange = ({ target }) => {
     setCurrentPage(0);
+    console.log(target.value);
     setSearch(target.value);
   };
   return (
@@ -49,12 +44,18 @@ export const ListPrestamos = () => {
         sx={{
           justifyContent: 'center',
           alignContent: 'center',
+          margin: 20,
         }}
       >
+        <Typography variant='h5' component='div' align='center' sx={{
+          color: 'white'
+        }}>
+          SELECIONA FECHA PRESTAMO
+        </Typography>
         <TextField
-          type='text'
+          type='date'
           className=' my-5 form-control align-self-center '
-          placeholder='Burcar Fecha dd-mm-yyyy'
+          placeholder='Burcar Fecha'
           value={search}
           onChange={onSearchChange}
         />
@@ -121,24 +122,31 @@ export const ListPrestamos = () => {
             </Grid>
           </Box>
         ))}
-
-        <nav>
-          <ul className='pagination'>
-            <li className='page-item'>
-              <a className='page-link' onClick={prevPage}>
-                Anterior
-              </a>
-            </li>
-            <li className='page-item active'>
-              <a className='page-link'>{currentPage + 1}</a>
-            </li>
-            <li className='page-item'>
-              <a className='page-link' onClick={nextPage}>
-                Siguiente
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Grid
+          sx={{
+            justifyContent: 'center',
+            alignContent: 'center',
+            margin: 20,
+          }}
+        >
+          <nav>
+            <ul className='pagination'>
+              <li className='page-item'>
+                <a className='page-link' onClick={prevPage}>
+                  Anterior
+                </a>
+              </li>
+              <li className='page-item active'>
+                <a className='page-link'>{currentPage + 1}</a>
+              </li>
+              <li className='page-item'>
+                <a className='page-link' onClick={nextPage}>
+                  Siguiente
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </Grid>
       </Grid>
     </ListLayout>
   );

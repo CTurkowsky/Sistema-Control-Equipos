@@ -7,7 +7,7 @@ import {
   InputLabel,
 } from '@mui/material';
 import { FormLayout } from '../Layout/FormLayout';
-import { useDocentes, useEquipos, useUsuarios } from '../../hooks';
+import { useDocentes, useUsuarios } from '../../hooks';
 import { useFormik } from 'formik';
 import * as YUP from 'yup';
 import Swal from 'sweetalert2';
@@ -35,13 +35,13 @@ export const PrestamoPage = () => {
       console.log(values);
       try {
         const response = await createPrestamoRequest(values);
+        formik.resetForm();
         return Swal.fire({
           title: 'Success!',
-          text: 'Se ha registrado un detalle',
+          text: 'Se ha registrado un prestamo',
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
-        formik.resetForm();
       } catch (error) {
         return Swal.fire({
           title: 'Error!',
