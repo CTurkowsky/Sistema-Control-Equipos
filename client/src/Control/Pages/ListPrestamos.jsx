@@ -4,7 +4,7 @@ import { ListLayout } from '../Layout/ListLayout';
 import { useState } from 'react';
 export const ListPrestamos = () => {
   const { prestamos, deletePrestamo, toggleCompleted } = usePrestamos();
-
+  console.log(prestamos)
   const handleDone = async (id) => {
     await toggleCompleted(id);
   };
