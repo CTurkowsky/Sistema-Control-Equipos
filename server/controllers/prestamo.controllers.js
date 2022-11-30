@@ -9,6 +9,15 @@ export const getPrestamos = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+export const getAllPrestamos = async (req, res) => {
+  try {
+    const [result] = await pool.query('SELECT * from prestamo  '); 
+    res.json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 
 export const getPrestamo = async (req, res) => {
   try {

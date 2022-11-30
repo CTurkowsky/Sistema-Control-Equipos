@@ -9,7 +9,7 @@ export const useUsuarios = () => {
       setUsuarios(response.data);
     };
     getUsuarios();
-  }, [usuarios]);
+  }, []);
 
   return {
     usuarios,

@@ -5,12 +5,14 @@ import {
         getPrestamo,
         createPrestamo,
         updatePrestamo,
-        deletePrestamo
+        deletePrestamo,
+        getAllPrestamos
 } from '../controllers/prestamo.controllers.js'
 
 const router = Router();
 
 router.get('/prestamos', getPrestamos);
+router.get('/allprestamos', getAllPrestamos);
 
 router.get('/prestamos/:id', getPrestamo);
 

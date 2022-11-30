@@ -36,14 +36,14 @@ export const PrestamoPage = () => {
       try {
         const response = await createPrestamoRequest(values);
         formik.resetForm();
-        return Swal.fire({
+       Swal.fire({
           title: 'Success!',
           text: 'Se ha registrado un prestamo',
           icon: 'success',
           confirmButtonText: 'Aceptar',
         });
       } catch (error) {
-        return Swal.fire({
+       Swal.fire({
           title: 'Error!',
           text: { error },
           icon: 'error',
