@@ -3,7 +3,7 @@ import { pool } from '../db.js';
 
 export const getPrestamos = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT p.idPrestamo, date_format(p.fecha ,"%d-%m-%Y") AS fecha,TIME_FORMAT( p.horaPrestamo, "%h:%i %p") as horaPrestamo, TIME_FORMAT( p.horaDevolucion, "%h:%i %p") as horaDevolucion, p.estado, d.nombre as nombreDocente, u.nombre as nombreUsuario from prestamo p INNER JOIN docente d on p.docente = d.idDocente INNER JOIN usuario u on p.docente = u.idUsuario order by idPrestamo'); 
+    const [result] = await pool.query('SELECT p.idPrestamo, date_format(p.fecha , "%Y-%m-%d") AS fecha,TIME_FORMAT( p.horaPrestamo, "%h:%i %p") as horaPrestamo, TIME_FORMAT( p.horaDevolucion, "%h:%i %p") as horaDevolucion, p.estado, d.nombre as nombreDocente, u.nombre as nombreUsuario from prestamo p INNER JOIN docente d on p.docente = d.idDocente INNER JOIN usuario u on p.docente = u.idUsuario order by p.idPrestamo'); 
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
