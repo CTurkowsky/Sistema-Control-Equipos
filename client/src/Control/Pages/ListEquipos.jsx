@@ -124,53 +124,61 @@ export const ListEquipos = () => {
                     <a>Disponibilidad:</a>
                     {equipo.disponibilidad}
                   </Typography>
-                  <Button
-                    onClick={() => handleDone(equipo.idEquipo)}
-                    variant='contained'
-                    sx={{ m: 2 }}
-               >
-                Cambiar Estado
-              </Button>
-              <Button
-                onClick={() => handleDisponibilidad(equipo.idEquipo)}
-                variant='contained'
-                sx={{m: 2}}
-              >
-                Cambiar Disponibilidad
-              </Button>
-              <Button variant='contained' onClick={() => deleteEquipo(equipo.idEquipo)}>Eliminar</Button>
-            </Grid>
-          </CardContent>
-        </Box>
-      ))}
- <Grid
-          sx={{
-            justifyContent: 'center',
-            alignContent: 'center',
-            margin: 20,
-          }}
-        >
-          <nav>
-            <ul className='pagination'>
-              <li className='page-item'>
-                <a className='page-link' onClick={prevPage}>
-                  Anterior
-                </a>
-              </li>
-              <li className='page-item active'>
-                <a className='page-link'>{currentPage + 1}</a>
-              </li>
-              <li className='page-item'>
-                <a className='page-link' onClick={nextPage}>
-                  Siguiente
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </Grid>
-    </Grid>
 
-    </Grid>
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button
+                      onClick={() => handleDone(equipo.idEquipo)}
+                      variant='contained'
+                      sx={{ m: 2 }}
+                    >
+                      Cambiar Estado
+                    </Button>
+                    <Button
+                      onClick={() => handleDisponibilidad(equipo.idEquipo)}
+                      variant='contained'
+                      sx={{ m: 'auto' }}
+                    >
+                      Cambiar Disponibilidad
+                    </Button>
+                    <Button
+                      sx={{ m: 2 }}
+                      variant='contained'
+                      onClick={() => deleteEquipo(equipo.idEquipo)}
+                    >
+                      Eliminar
+                    </Button>
+                  </Box>
+                </Grid>
+              </CardContent>
+            </Box>
+          ))}
+          <Grid
+            sx={{
+              justifyContent: 'center',
+              alignContent: 'center',
+              margin: 20,
+            }}
+          >
+            <nav>
+              <ul className='pagination'>
+                <li className='page-item'>
+                  <a className='page-link' onClick={prevPage}>
+                    Anterior
+                  </a>
+                </li>
+                <li className='page-item active'>
+                  <a className='page-link'>{currentPage + 1}</a>
+                </li>
+                <li className='page-item'>
+                  <a className='page-link' onClick={nextPage}>
+                    Siguiente
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </Grid>
+        </Grid>
+      </Grid>
     </ListLayout>
   );
 };

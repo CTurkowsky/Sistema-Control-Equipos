@@ -3,7 +3,7 @@ import { pool } from '../db.js';
 
 export const getIncidencias = async (req, res) => {
   try {
-    const [result] = await pool.query('SELECT i.idIncidencia, date_format(i.fecha , "%Y-%m-%d") AS fecha, i.hora, i.descripcion, u.nombre as nombreUsuario, e.nombre as nombreEquipo from incidencia i INNER JOIN usuario u on i.usuario = u.idUsuario INNER JOIN equipoinformatico e on i.equipo = e.idEquipo');
+    const [result] = await pool.query('SELECT i.idIncidencia, date_format(i.fecha , "%Y-%m-%d") AS fecha, i.hora, i.descripcion, u.nombre as nombreUsuario, e.nombre as nombreEquipo, i.estado from incidencia i INNER JOIN usuario u on i.usuario = u.idUsuario INNER JOIN equipoinformatico e on i.equipo = e.idEquipo');
     res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -27,10 +27,10 @@ export const getIncidencia = async (req, res) => {
 
 export const createIncidencia = async (req, res) => {
   try {
-    const { fecha, hora, descripcion, usuario, equipo } = req.body;
+    const { fecha, hora, descripcion, usuario, equipo, estado } = req.body;
     const [result] = await pool.query(
-      'INSERT INTO incidencia (fecha, hora, descripcion, usuario, equipo ) VALUES (?,?,?,?,?)',
-      [fecha, hora, descripcion, usuario, equipo]
+      'INSERT INTO incidencia (fecha, hora, descripcion, usuario, equipo, estado) VALUES (?,?,?,?,?,?)',
+      [fecha, hora, descripcion, usuario, equipo, estado]
     );
 
     res.json({
@@ -40,6 +40,7 @@ export const createIncidencia = async (req, res) => {
       descripcion,
       usuario,
       equipo,
+      estado
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });

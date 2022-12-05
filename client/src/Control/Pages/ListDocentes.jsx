@@ -7,16 +7,17 @@ import {
   Grid,
   TextField,
 } from '@mui/material';
-import { useState }from 'react'
+import { useState } from 'react';
 import { ListLayout } from '../Layout/ListLayout';
 export const ListDocentes = () => {
-  const { docentes } = useDocentes();
+  const { docentes, deleteDocente } = useDocentes();
 
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState('');
 
   const filteredDocentes = () => {
-    if (search.length === 0) return docentes.slice(currentPage, currentPage + 10);
+    if (search.length === 0)
+      return docentes.slice(currentPage, currentPage + 10);
 
     const filtered = docentes.filter((docente) =>
       docente.nombre.toLowerCase().includes(search.toLowerCase())
@@ -86,6 +87,15 @@ export const ListDocentes = () => {
                     {docente.nombre} {docente.apellidoPaterno}{' '}
                     {docente.apellidoMaterno}
                   </Typography>
+                <Box sx={{ display: 'flex',justifyContent: 'center' }}>
+                  <Button
+                    sx={{ mt: 2}}
+                    variant='contained'
+                    onClick={() => deleteDocente(docente.idDocente)}
+                  >
+                    Eliminar
+                  </Button>
+                </Box>
                 </Grid>
               </CardContent>
             </Box>

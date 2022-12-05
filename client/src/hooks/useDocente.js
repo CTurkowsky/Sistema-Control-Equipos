@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getDocentesRequest } from '../api/docente.api';
+import { getDocentesRequest, deleteDocenteRequest } from '../api/docente.api';
 
 export const useDocentes = () => {
   const [docentes, setDocentes] = useState([]);
@@ -11,8 +11,16 @@ export const useDocentes = () => {
     getDocentes();
   }, []);
 
+ const deleteDocente = async (id) => {
+    try {
+      const response = await deleteDocenteRequest(id);
+      setDocentes(docentes.filter((docente) => docente.idDocente !== id));
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return {
-    docentes
+    docentes, deleteDocente
   };
 };
 

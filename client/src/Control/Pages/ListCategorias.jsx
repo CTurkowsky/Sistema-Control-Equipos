@@ -79,18 +79,23 @@ export const ListCategorias = () => {
                   <a>Categoria: </a>
                   {categoria.categoria}
                 </Typography>
+
+                <Box sx={{ display: 'flex',justifyContent: 'center' }}>
                 <Button
+                  sx={{mt: 2}}
                   variant='contained'
                   onClick={() => deleteCategoria(categoria.idCategoria)}
                 >
                   Eliminar
                 </Button>
+                </Box>
               </Grid>
             </CardContent>
           </Box>
         ))}
         <Grid
           sx={{
+            display: 'flex',
             justifyContent: 'center',
             alignContent: 'center',
             margin: 20,

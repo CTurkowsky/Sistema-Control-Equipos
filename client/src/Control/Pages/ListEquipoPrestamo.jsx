@@ -2,7 +2,8 @@ import { useEquipoPrestamos } from '../../hooks';
 import { Typography, Box, CardContent, Button, Grid } from '@mui/material';
 import { ListLayout } from '../Layout/ListLayout';
 export const ListEquipoPrestamo = () => {
-  const { equipoprestamos, toggleCompleted, deleteEquipoPrestamo } = useEquipoPrestamos();
+  const { equipoprestamos, toggleCompleted, deleteEquipoPrestamo } =
+    useEquipoPrestamos();
 
   const handleDone = async (id) => {
     await toggleCompleted(id);
@@ -19,7 +20,7 @@ export const ListEquipoPrestamo = () => {
                 backgroundColor: '#eee',
                 padding: 4,
                 width: 500,
-                height: 350,
+                height: 250,
                 borderRadius: 7,
                 justifyContent: 'center',
                 alignContent: 'center',
@@ -41,17 +42,24 @@ export const ListEquipoPrestamo = () => {
                 <a>Estado Prestamo: </a>
                 {equipoprestamo.estado}
               </Typography>
-              {/* <Button variant='contained' sx={{ m: 4 }}>
-                Editar
-              </Button> */}
-              <Button
-                onClick={() => handleDone(equipoprestamo.idEquipoPrestamo)}
-                variant='contained'
-                sx={{ m: 4 }}
-              >
-                Completar
-              </Button>
-              <Button  onClick={() => deleteEquipoPrestamo(equipoprestamo.idEquipoPrestamo)}variant='contained'>Eliminar</Button>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Button
+                  onClick={() => handleDone(equipoprestamo.idEquipoPrestamo)}
+                  variant='contained'
+                  sx={{ m: 2 }}
+                >
+                  Completar
+                </Button>
+                <Button
+                  sx={{ m: 2 }}
+                  onClick={() =>
+                    deleteEquipoPrestamo(equipoprestamo.idEquipoPrestamo)
+                  }
+                  variant='contained'
+                >
+                  Eliminar
+                </Button>
+              </Box>
             </Grid>
           </CardContent>
         </Box>

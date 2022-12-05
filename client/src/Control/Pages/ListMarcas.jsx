@@ -85,42 +85,46 @@ export const ListMarcas = () => {
                     <a>Marca: </a>
                     {marca.marca}
                   </Typography>
-                  <Button
-                    variant='contained'
-                    onClick={() => deleteMarca(marca.idMarca)}
-                  >
-                    Eliminar
-                  </Button>
+
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button
+                      sx={{ mt: 4}}
+                      variant='contained'
+                      onClick={() => deleteMarca(marca.idMarca)}
+                    >
+                      Eliminar
+                    </Button>
+                  </Box>
                 </Grid>
               </CardContent>
             </Box>
           ))}
 
-        <Grid
-          sx={{
-            justifyContent: 'center',
-            alignContent: 'center',
-            margin: 20,
-          }}
-        >
-          <nav>
-            <ul className='pagination'>
-              <li className='page-item'>
-                <a className='page-link' onClick={prevPage}>
-                  Anterior
-                </a>
-              </li>
-              <li className='page-item active'>
-                <a className='page-link'>{currentPage + 1}</a>
-              </li>
-              <li className='page-item'>
-                <a className='page-link' onClick={nextPage}>
-                  Siguiente
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </Grid>
+          <Grid
+            sx={{
+              justifyContent: 'center',
+              alignContent: 'center',
+              margin: 20,
+            }}
+          >
+            <nav>
+              <ul className='pagination'>
+                <li className='page-item'>
+                  <a className='page-link' onClick={prevPage}>
+                    Anterior
+                  </a>
+                </li>
+                <li className='page-item active'>
+                  <a className='page-link'>{currentPage + 1}</a>
+                </li>
+                <li className='page-item'>
+                  <a className='page-link' onClick={nextPage}>
+                    Siguiente
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </Grid>
         </Grid>
       </Grid>
     </ListLayout>

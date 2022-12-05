@@ -77,7 +77,7 @@ export const ListIncidencia = () => {
                   backgroundColor: '#eee',
                   padding: 4,
                   width: 500,
-                  height: 350,
+                  height: 250,
                   borderRadius: 7,
                   justifyContent: 'center',
                   alignContent: 'center',
@@ -95,6 +95,10 @@ export const ListIncidencia = () => {
                   <a>Descripcion: </a>
                   {incidencia.descripcion}
                 </Typography>
+                <Typography sx={{ mb: 1.5 }} color='text.secondary'>
+                  <a>Estado: </a>
+                  {incidencia.estado}
+                </Typography>
                 <Typography variant='body2'>
                   <a>Equipo: </a>
                   {incidencia.nombreEquipo}
@@ -103,15 +107,14 @@ export const ListIncidencia = () => {
                   <a>Usuario: </a>
                   {incidencia.nombreUsuario}
                 </Typography>
-                {/* <Button variant='contained' sx={{ m: 4 }}>
-                Editar
-              </Button> */}
-                <Button
-                  variant='contained'
-                  onClick={() => deletePrestamo(prestamo.idPrestamo)}
-                >
-                  Eliminar
-                </Button>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <Button
+                    variant='contained'
+                    onClick={() => deletePrestamo(prestamo.idPrestamo)}
+                  >
+                    Eliminar
+                  </Button>
+                </Box>
               </Grid>
             </CardContent>
           </Box>

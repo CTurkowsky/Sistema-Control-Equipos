@@ -46,9 +46,14 @@ export const ListPrestamos = () => {
           margin: 20,
         }}
       >
-        <Typography variant='h5' component='div' align='center' sx={{
-          color: 'white'
-        }}>
+        <Typography
+          variant='h5'
+          component='div'
+          align='center'
+          sx={{
+            color: 'white',
+          }}
+        >
           SELECIONA FECHA PRESTAMO
         </Typography>
         <TextField
@@ -102,22 +107,22 @@ export const ListPrestamos = () => {
                 <a>Estado: </a>
                 {prestamo.estado}
               </Typography>
-              {/* <Button variant='contained' sx={{ m: 4 }}>
-                Editar
-              </Button> */}
-              <Button
-                onClick={() => handleDone(prestamo.idPrestamo)}
-                variant='contained'
-                sx={{ m: 4 }}
-              >
-                Completar
-              </Button>
-              <Button
-                variant='contained'
-                onClick={() => deletePrestamo(prestamo.idPrestamo)}
-              >
-                Eliminar
-              </Button>
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Button
+                  onClick={() => handleDone(prestamo.idPrestamo)}
+                  variant='contained'
+                  sx={{ m: 2 }}
+                >
+                  Completar
+                </Button>
+                <Button
+                  sx={{ m: 2 }}
+                  variant='contained'
+                  onClick={() => deletePrestamo(prestamo.idPrestamo)}
+                >
+                  Eliminar
+                </Button>
+              </Box>
             </Grid>
           </Box>
         ))}
