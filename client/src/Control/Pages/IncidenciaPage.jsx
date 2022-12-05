@@ -23,6 +23,7 @@ export const IncidenciaPage = () => {
       descripcion: '',
       equipo: '',
       usuario: '',
+      estado: 'Pendiente'
     },
     validationSchema: YUP.object({
       fecha: YUP.date().required('La fecha es requerida'),

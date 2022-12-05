@@ -10,10 +10,14 @@ import {
 } from '@mui/material';
 import { useState } from 'react';
 export const ListIncidencia = () => {
-  const { incidencias } = useIncidencia();
+  const { incidencias, toggleEstado } = useIncidencia();
 
   const [currentPage, setCurrentPage] = useState(0);
   const [search, setSearch] = useState('');
+  const handleEstado = async (id) => {
+    await toggleEstado(id);
+  };
+
 
   const filteredIncidencias = () => {
     if (search.length === 0)
@@ -77,7 +81,7 @@ export const ListIncidencia = () => {
                   backgroundColor: '#eee',
                   padding: 4,
                   width: 500,
-                  height: 250,
+                  height: 300,
                   borderRadius: 7,
                   justifyContent: 'center',
                   alignContent: 'center',
@@ -109,10 +113,18 @@ export const ListIncidencia = () => {
                 </Typography>
                 <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                   <Button
+                    sx={{ m: 2}}
                     variant='contained'
                     onClick={() => deletePrestamo(prestamo.idPrestamo)}
                   >
                     Eliminar
+                  </Button>
+                  <Button
+                    onClick={() => handleEstado(incidencia.idIncidencia)}
+                    variant='contained'
+                    sx={{ m: 2}}
+                  >
+                    Cambiar Estado
                   </Button>
                 </Box>
               </Grid>
